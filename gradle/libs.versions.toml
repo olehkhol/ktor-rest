@@ -1,8 +1,8 @@
-
 [versions]
 ktor-version = "3.0.0"
 kotlin-version = "2.0.21"
 logback-version = "1.4.14"
+jayway-jsonpath = "2.9.0"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor-version" }
@@ -16,6 +16,7 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin-version" }
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor-version" }
+jayway-json-path = { module = "com.jayway.jsonpath:json-path", version.ref = "jayway-jsonpath" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
