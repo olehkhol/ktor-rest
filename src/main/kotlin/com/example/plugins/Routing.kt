@@ -1,10 +1,13 @@
 package com.example.plugins
 
 import com.example.model.Priority
+import com.example.model.Task
 import com.example.model.TaskRepository
 import io.ktor.http.*
+import io.ktor.serialization.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
@@ -49,6 +52,19 @@ fun Application.configureRouting() {
                     }
                     call.respond(tasks)
                 } catch (ex: IllegalArgumentException) {
+                    call.respond(HttpStatusCode.BadRequest)
+                }
+            }
+            post {
+                try {
+                    val task = call.receive<Task>()
+
+                    TaskRepository.addTasks(task)
+
+                    call.respond(HttpStatusCode.NoContent)
+                } catch (ex: IllegalStateException) {
+                    call.respond(HttpStatusCode.BadRequest)
+                } catch (ex: JsonConvertException) {
                     call.respond(HttpStatusCode.BadRequest)
                 }
             }
